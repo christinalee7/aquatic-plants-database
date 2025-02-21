@@ -4,7 +4,7 @@ Database of freshwater aquatic plants.
 
 ## Overview
 
-This is a web-based database on freshwwater aquatic plants created to act as a resource for the aquarium/aquascaping community to find plants.
+This is a web-based database on freshwater aquatic plants created to act as a resource for the aquarium/aquascaping community to find plants.
 
 ## Tools
 
