@@ -1,11 +1,35 @@
 <?php
 include('db.php');
 
-$sql = "SELECT * FROM plant";
+$sql = "SELECT * FROM `plant`";
 
 if (isset($_POST['search']) && !empty($_POST['search'])) {
     $searchTerm = $conn->real_escape_string($_POST['search']);
-    $sql = "SELECT * FROM plant WHERE ScientificName LIKE '%$searchTerm%' OR CommonName LIKE '%$searchTerm%'";
+    $sql .= " WHERE ScientificName LIKE '%$searchTerm%' OR CommonName LIKE '%$searchTerm%'";
+}
+
+if (isset($_POST['growth-rate']) && $_POST['growth-rate'] != 'all-growth') {
+    $growthRate = $_POST['growth-rate'];
+
+    if (strpos($sql, "WHERE") !== false) {
+        $sql .= " AND";
+    }
+    else {
+        $sql .= " WHERE";
+    }
+    
+    if ($growthRate == 'vs-growth') {
+        $sql .= " GrowthRate = 'Very Slow'";
+    }
+    elseif ($growthRate == 's-growth') {
+        $sql .= " GrowthRate = 'Slow'";
+    }
+    elseif ($growthRate == 'f-growth') {
+        $sql .= " GrowthRate = 'Fast'";
+    }
+    elseif ($growthRate == 'vf-growth') {
+        $sql .= " GrowthRate = 'Very Fast'";
+    }
 }
 
 $result = $conn->query($sql);
@@ -37,9 +61,19 @@ $result = $conn->query($sql);
                 <form method="POST" action="" id="search-form">
                     <input type="text" name="search" placeholder="Search..." id="search-input" />
                     <input type="submit" value="Search" id="search-button" />
+                
+                    <br>
+
+                    <label for="growth-rate"><strong>Growth Rate</strong></label>
+                    <select name="growth-rate" id="growth-rate">
+                        <option value="all-growth"></option>
+                        <option value="vs-growth">Very Slow</option>
+                        <option value="s-growth">Slow</option>
+                        <option value="f-growth">Fast</option>
+                        <option value="vf-growth">Very Fast</option>
+                    </select>
                 </form>
-            
-            <p>testing</p>
+
             <p>testing</p>
             <p>testing</p>
             <p>testing</p>
