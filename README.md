@@ -8,8 +8,8 @@ This is a web-based database on freshwater aquatic plants created to act as a re
 
 ## Tools
 
-- HTML, CSS, JavaScript
-- Visual Studio Code
+- HTML, CSS, JavaScript, PHP
+- Visual Studio Code, Xampp
 - MySQL
 
 ## Features
